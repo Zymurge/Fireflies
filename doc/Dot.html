@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=IBM437" http-equiv="Content-Type">
+
+<title>class Dot - RDoc Documentation</title>
+
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+
+<body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>dot.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link">Object
+  
+</nav>
+
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-c-new">::new</a>
+    
+    <li><a href="#method-i-color">#color</a>
+    
+    <li><a href="#method-i-genLightPhases">#genLightPhases</a>
+    
+    <li><a href="#method-i-isLit-3F">#isLit?</a>
+    
+    <li><a href="#method-i-move">#move</a>
+    
+    <li><a href="#method-i-nextColor">#nextColor</a>
+    
+    <li><a href="#method-i-to_s">#to_s</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./DisplayWindow.html">DisplayWindow</a>
+  
+    <li><a href="./Dot.html">Dot</a>
+  
+    <li><a href="./DotManager.html">DotManager</a>
+  
+    <li><a href="./DotObserver.html">DotObserver</a>
+  
+    <li><a href="./TestDotObserver.html">TestDotObserver</a>
+  
+    <li><a href="./TestDots.html">TestDots</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="class">class Dot</h1>
+
+  <div id="description" class="description">
+    
+<p>Represents all of the state for a single instance of a dot. Includes helper
+methods to trigger incremental changes in dot state.</p>
+
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+    <!-- Attributes -->
+    <section id="attribute-method-details" class="method-section section">
+      <h3 class="section-header">Attributes</h3>
+
+      
+      <div id="attribute-i-pulse" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">pulse</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>:attr: x, y The current coords of the dot :attr: <a
+href="Dot.html#attribute-i-vec_x">#vec_x</a>, <a
+href="Dot.html#attribute-i-vec_y">#vec_y</a> The delta applied to current
+x, y when the move method is called :attr: pulse The number of steps
+required before a toggle between lit and unlit occurs :attr: pulseStep The
+current step number in a pulse sequence, counting a full cycle from lit
+through to the end of unlit (2x pulse)</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-pulseStep" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">pulseStep</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>:attr: x, y The current coords of the dot :attr: <a
+href="Dot.html#attribute-i-vec_x">#vec_x</a>, <a
+href="Dot.html#attribute-i-vec_y">#vec_y</a> The delta applied to current
+x, y when the move method is called :attr: pulse The number of steps
+required before a toggle between lit and unlit occurs :attr: pulseStep The
+current step number in a pulse sequence, counting a full cycle from lit
+through to the end of unlit (2x pulse)</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-vec_x" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">vec_x</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>:attr: x, y The current coords of the dot :attr: <a
+href="Dot.html#attribute-i-vec_x">#vec_x</a>, <a
+href="Dot.html#attribute-i-vec_y">#vec_y</a> The delta applied to current
+x, y when the move method is called :attr: pulse The number of steps
+required before a toggle between lit and unlit occurs :attr: pulseStep The
+current step number in a pulse sequence, counting a full cycle from lit
+through to the end of unlit (2x pulse)</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-vec_y" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">vec_y</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>:attr: x, y The current coords of the dot :attr: <a
+href="Dot.html#attribute-i-vec_x">#vec_x</a>, <a
+href="Dot.html#attribute-i-vec_y">#vec_y</a> The delta applied to current
+x, y when the move method is called :attr: pulse The number of steps
+required before a toggle between lit and unlit occurs :attr: pulseStep The
+current step number in a pulse sequence, counting a full cycle from lit
+through to the end of unlit (2x pulse)</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-x" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">x</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>:attr: x, y The current coords of the dot :attr: <a
+href="Dot.html#attribute-i-vec_x">#vec_x</a>, <a
+href="Dot.html#attribute-i-vec_y">#vec_y</a> The delta applied to current
+x, y when the move method is called :attr: pulse The number of steps
+required before a toggle between lit and unlit occurs :attr: pulseStep The
+current step number in a pulse sequence, counting a full cycle from lit
+through to the end of unlit (2x pulse)</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-y" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">y</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>:attr: x, y The current coords of the dot :attr: <a
+href="Dot.html#attribute-i-vec_x">#vec_x</a>, <a
+href="Dot.html#attribute-i-vec_y">#vec_y</a> The delta applied to current
+x, y when the move method is called :attr: pulse The number of steps
+required before a toggle between lit and unlit occurs :attr: pulseStep The
+current step number in a pulse sequence, counting a full cycle from lit
+through to the end of unlit (2x pulse)</p>
+        
+        </div>
+      </div>
+      
+    </section><!-- attribute-method-details -->
+    
+
+    <!-- Methods -->
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Class Methods</h3>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">( x, y, color, pulse, pulseStep=0, fadeSteps=5, totalFadePercent=80 )</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <pre>Generates a dot instance</pre>
+
+<h3 id="method-c-new-label-Arguments">Arguments</h3>
+
+<pre>* x: the X coord</pre>
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File dot.rb, line 22</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>( <span class="ruby-identifier">x</span>, <span class="ruby-identifier">y</span>, <span class="ruby-identifier">color</span>, <span class="ruby-identifier">pulse</span>, <span class="ruby-identifier">pulseStep</span>=<span class="ruby-value">0</span>, <span class="ruby-identifier">fadeSteps</span>=<span class="ruby-value">5</span>, <span class="ruby-identifier">totalFadePercent</span>=<span class="ruby-value">80</span> )
+  <span class="ruby-ivar">@x</span> = <span class="ruby-identifier">x</span>
+  <span class="ruby-ivar">@y</span> = <span class="ruby-identifier">y</span>
+  <span class="ruby-ivar">@pulseStep</span> = <span class="ruby-identifier">pulseStep</span>
+  <span class="ruby-ivar">@pulse</span> = <span class="ruby-identifier">pulse</span>
+  <span class="ruby-ivar">@fadeSteps</span> = <span class="ruby-identifier">fadeSteps</span>
+  <span class="ruby-ivar">@vec_x</span> = <span class="ruby-ivar">@vec_y</span> = <span class="ruby-value">0</span>
+  <span class="ruby-ivar">@lightPhases</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+
+  <span class="ruby-comment">#puts &quot;#{to_s}&quot;</span>
+  <span class="ruby-identifier">genLightPhases</span>( <span class="ruby-identifier">fadeSteps</span>, <span class="ruby-identifier">color</span>, <span class="ruby-identifier">totalFadePercent</span> )
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- new-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- new-method -->
+
+    
+    </section><!-- public-class-method-details -->
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-color" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">color</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="color-source">
+            <pre><span class="ruby-comment"># File dot.rb, line 87</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">color</span>
+  <span class="ruby-ivar">@lightPhases</span>[<span class="ruby-ivar">@pulseStep</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- color-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- color-method -->
+
+    
+      <div id="method-i-genLightPhases" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">genLightPhases</span><span
+            class="method-args">( steps, firstColor, totalFadePercent )</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="genLightPhases-source">
+            <pre><span class="ruby-comment"># File dot.rb, line 40</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier">genLightPhases</span>( <span class="ruby-identifier">steps</span>, <span class="ruby-identifier">firstColor</span>, <span class="ruby-identifier">totalFadePercent</span> )
+    
+    <span class="ruby-comment"># debug</span>
+    <span class="ruby-comment"># puts &quot;genLightPhases.new( #{steps}, #{firstColor}, #{totalFadePercent} )&quot;</span>
+    <span class="ruby-comment"># gen the series of steps where color is at full brightness</span>
+    <span class="ruby-identifier">numLightSteps</span> = <span class="ruby-ivar">@pulse</span><span class="ruby-operator">-</span><span class="ruby-identifier">steps</span>
+    <span class="ruby-keyword">for</span> <span class="ruby-identifier">x</span> <span class="ruby-keyword">in</span> <span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-identifier">numLightSteps</span><span class="ruby-operator">-</span><span class="ruby-value">1</span>
+      <span class="ruby-ivar">@lightPhases</span>[<span class="ruby-identifier">x</span>] = <span class="ruby-identifier">firstColor</span>
+      <span class="ruby-comment"># puts &quot;Step #{x} gen color: #{@lightPhases[x].to_s}&quot;</span>
+    <span class="ruby-keyword">end</span>
+    
+    <span class="ruby-comment"># determine the per step fade decrement</span>
+    <span class="ruby-identifier">fadePercent</span> = <span class="ruby-identifier">totalFadePercent</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">/</span> <span class="ruby-value">100</span>
+    <span class="ruby-identifier">fade</span> = <span class="ruby-identifier">fadePercent</span> <span class="ruby-operator">/</span> <span class="ruby-identifier">steps</span>
+    <span class="ruby-identifier">rDelta</span> = ( <span class="ruby-identifier">firstColor</span>.<span class="ruby-identifier">red</span> * <span class="ruby-identifier">fade</span> )
+    <span class="ruby-identifier">gDelta</span> = ( <span class="ruby-identifier">firstColor</span>.<span class="ruby-identifier">green</span> * <span class="ruby-identifier">fade</span> )
+    <span class="ruby-identifier">bDelta</span> = ( <span class="ruby-identifier">firstColor</span>.<span class="ruby-identifier">blue</span> * <span class="ruby-identifier">fade</span> )
+    <span class="ruby-comment"># puts &quot;fadePercent: #{fadePercent} / fade: #{fade} / rDelta: #{rDelta}&quot;</span>
+    
+    <span class="ruby-comment"># build the incremental fade colors</span>
+    <span class="ruby-identifier">steps</span>.<span class="ruby-identifier">times</span> <span class="ruby-keyword">do</span>
+      <span class="ruby-identifier">fade</span> = <span class="ruby-ivar">@lightPhases</span>[<span class="ruby-identifier">x</span>]
+      <span class="ruby-identifier">x</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+      <span class="ruby-identifier">r</span> = <span class="ruby-identifier">fade</span>.<span class="ruby-identifier">red</span>   <span class="ruby-operator">-</span> <span class="ruby-identifier">rDelta</span>
+      <span class="ruby-identifier">g</span> = <span class="ruby-identifier">fade</span>.<span class="ruby-identifier">green</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">gDelta</span>
+      <span class="ruby-identifier">b</span> = <span class="ruby-identifier">fade</span>.<span class="ruby-identifier">blue</span>  <span class="ruby-operator">-</span> <span class="ruby-identifier">bDelta</span>
+      <span class="ruby-ivar">@lightPhases</span>[<span class="ruby-identifier">x</span>] = <span class="ruby-constant">Gosu</span><span class="ruby-operator">::</span><span class="ruby-constant">Color</span>.<span class="ruby-identifier">new</span>( <span class="ruby-value">255</span>, <span class="ruby-identifier">r</span>, <span class="ruby-identifier">g</span>, <span class="ruby-identifier">b</span> )
+      <span class="ruby-comment"># puts &quot;Step #{x} gen color: #{@lightPhases[x].to_s}, obj: #{@lightPhases[x].inspect} previous: #{@lightPhases[x-1]}&quot;</span>
+    <span class="ruby-keyword">end</span>
+    
+    <span class="ruby-keyword">for</span> <span class="ruby-identifier">x</span> <span class="ruby-keyword">in</span> (<span class="ruby-identifier">x</span><span class="ruby-operator">+</span><span class="ruby-value">1</span>)<span class="ruby-operator">...</span>(<span class="ruby-ivar">@pulse</span>*<span class="ruby-value">2</span>) <span class="ruby-keyword">do</span>
+      <span class="ruby-ivar">@lightPhases</span>[<span class="ruby-identifier">x</span>] = <span class="ruby-ivar">@lightPhases</span>[<span class="ruby-identifier">x</span><span class="ruby-operator">-</span><span class="ruby-value">1</span>]
+      <span class="ruby-comment">#puts &quot;Step #{x} gen color: #{@lightPhases[x].to_s}&quot;</span>
+    <span class="ruby-keyword">end</span>
+    
+  <span class="ruby-keyword">end</span>
+  
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier">move</span>()
+    <span class="ruby-ivar">@x</span> <span class="ruby-operator">+=</span> <span class="ruby-ivar">@vec_x</span>
+    <span class="ruby-ivar">@y</span> <span class="ruby-operator">+=</span> <span class="ruby-ivar">@vec_y</span>
+    <span class="ruby-ivar">@color</span> = <span class="ruby-identifier">nextColor</span>
+  <span class="ruby-keyword">end</span>
+  
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier">isLit?</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-ivar">@pulseSteps</span> <span class="ruby-operator">&lt;</span> <span class="ruby-ivar">@pulse</span> <span class="ruby-operator">-</span> <span class="ruby-ivar">@fadeSteps</span>
+  <span class="ruby-keyword">end</span>
+  
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier">color</span>
+    <span class="ruby-ivar">@lightPhases</span>[<span class="ruby-ivar">@pulseStep</span>]
+  <span class="ruby-keyword">end</span>
+  
+  <span class="ruby-identifier">private</span>
+  
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier">nextColor</span>()
+    <span class="ruby-ivar">@pulseStep</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+    <span class="ruby-ivar">@pulseStep</span> = <span class="ruby-value">0</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@pulseStep</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-ivar">@pulse</span>*<span class="ruby-value">2</span>
+    <span class="ruby-identifier">color</span>
+  <span class="ruby-keyword">end</span>
+  
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- genLightPhases-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- genLightPhases-method -->
+
+    
+      <div id="method-i-isLit-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">isLit?</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="isLit-3F-source">
+            <pre><span class="ruby-comment"># File dot.rb, line 83</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">isLit?</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-ivar">@pulseSteps</span> <span class="ruby-operator">&lt;</span> <span class="ruby-ivar">@pulse</span> <span class="ruby-operator">-</span> <span class="ruby-ivar">@fadeSteps</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- isLit-3F-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- isLit-3F-method -->
+
+    
+      <div id="method-i-move" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">move</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="move-source">
+            <pre><span class="ruby-comment"># File dot.rb, line 77</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">move</span>()
+  <span class="ruby-ivar">@x</span> <span class="ruby-operator">+=</span> <span class="ruby-ivar">@vec_x</span>
+  <span class="ruby-ivar">@y</span> <span class="ruby-operator">+=</span> <span class="ruby-ivar">@vec_y</span>
+  <span class="ruby-ivar">@color</span> = <span class="ruby-identifier">nextColor</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- move-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- move-method -->
+
+    
+      <div id="method-i-nextColor" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">nextColor</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="nextColor-source">
+            <pre><span class="ruby-comment"># File dot.rb, line 93</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">nextColor</span>()
+  <span class="ruby-ivar">@pulseStep</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+  <span class="ruby-ivar">@pulseStep</span> = <span class="ruby-value">0</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@pulseStep</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-ivar">@pulse</span>*<span class="ruby-value">2</span>
+  <span class="ruby-identifier">color</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- nextColor-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- nextColor-method -->
+
+    
+      <div id="method-i-to_s" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">to_s</span><span
+            class="method-args">( step=0 )</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="to_s-source">
+            <pre><span class="ruby-comment"># File dot.rb, line 35</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">to_s</span>( <span class="ruby-identifier">step</span>=<span class="ruby-value">0</span> )
+  <span class="ruby-comment">#puts &quot;x,y: #{@x},#{@y} / color: #{@lightPhases[step]} / pulse: #{@pulse} / fadeSteps: #{@fadeSteps} / totalFadePercent: #{@totalFadePercent}&quot;</span>
+  <span class="ruby-comment">#puts &quot;current step: #{@pulseStep} / current color: #{@lightPhases[@pulseStep]}&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- to_s-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- to_s-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+

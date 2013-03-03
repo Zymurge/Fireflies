@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=IBM437" http-equiv="Content-Type">
+
+<title>class TestDots - RDoc Documentation</title>
+
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+
+<body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>tc_dot.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link">Test::Unit::TestCase
+  
+</nav>
+
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-i-testColorChange">#testColorChange</a>
+    
+    <li><a href="#method-i-testInitializeAttributes">#testInitializeAttributes</a>
+    
+    <li><a href="#method-i-testInitializeCorrectClass">#testInitializeCorrectClass</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./DisplayWindow.html">DisplayWindow</a>
+  
+    <li><a href="./Dot.html">Dot</a>
+  
+    <li><a href="./DotManager.html">DotManager</a>
+  
+    <li><a href="./DotObserver.html">DotObserver</a>
+  
+    <li><a href="./TestDotObserver.html">TestDotObserver</a>
+  
+    <li><a href="./TestDots.html">TestDots</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="class">class TestDots</h1>
+
+  <div id="description" class="description">
+    
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-testColorChange" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">testColorChange</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Expect that with a pulse of 3 and 50% fade pattern:</p>
+<ul><li>
+<p>Step 1; initial color</p>
+</li><li>
+<p>Step 2: 25% reduction in rgb attributes</p>
+</li><li>
+<p>Step 3: 50% reduction in rgb attributes</p>
+</li><li>
+<p>Step 4-6: as step 3</p>
+</li><li>
+<p>Step 7: return to initial</p>
+</li></ul>
+          
+
+          
+          <div class="method-source-code" id="testColorChange-source">
+            <pre><span class="ruby-comment"># File tc_dot.rb, line 29</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">testColorChange</span>
+  <span class="ruby-ivar">@aColor</span> = <span class="ruby-constant">Gosu</span><span class="ruby-operator">::</span><span class="ruby-constant">Color</span>.<span class="ruby-identifier">new</span>( <span class="ruby-value">255</span>, <span class="ruby-value">200</span>, <span class="ruby-value">200</span>, <span class="ruby-value">200</span> )
+  <span class="ruby-ivar">@bColor</span> = <span class="ruby-constant">Gosu</span><span class="ruby-operator">::</span><span class="ruby-constant">Color</span>.<span class="ruby-identifier">new</span>( <span class="ruby-value">255</span>, <span class="ruby-value">150</span>, <span class="ruby-value">150</span>, <span class="ruby-value">150</span> )
+  <span class="ruby-ivar">@cColor</span> = <span class="ruby-constant">Gosu</span><span class="ruby-operator">::</span><span class="ruby-constant">Color</span>.<span class="ruby-identifier">new</span>( <span class="ruby-value">255</span>, <span class="ruby-value">100</span>, <span class="ruby-value">100</span>, <span class="ruby-value">100</span> )
+  <span class="ruby-identifier">d</span> = <span class="ruby-constant">Dot</span>.<span class="ruby-identifier">new</span>( <span class="ruby-value">10</span>, <span class="ruby-value">20</span>, <span class="ruby-ivar">@aColor</span>, <span class="ruby-value">3</span>, <span class="ruby-value">0</span>, <span class="ruby-value">2</span>, <span class="ruby-value">50</span> )
+  <span class="ruby-identifier">assert_equal</span>( <span class="ruby-identifier">d</span>.<span class="ruby-identifier">color</span>, <span class="ruby-ivar">@aColor</span> )
+  <span class="ruby-identifier">d</span>.<span class="ruby-identifier">move</span>
+  <span class="ruby-identifier">assert_equal</span>( <span class="ruby-identifier">d</span>.<span class="ruby-identifier">color</span>, <span class="ruby-ivar">@bColor</span> )
+  <span class="ruby-identifier">d</span>.<span class="ruby-identifier">move</span>
+  <span class="ruby-identifier">assert_equal</span>( <span class="ruby-identifier">d</span>.<span class="ruby-identifier">color</span>, <span class="ruby-ivar">@cColor</span> )   
+  <span class="ruby-identifier">d</span>.<span class="ruby-identifier">move</span>
+  <span class="ruby-identifier">assert_equal</span>( <span class="ruby-identifier">d</span>.<span class="ruby-identifier">color</span>, <span class="ruby-ivar">@cColor</span> )
+  <span class="ruby-identifier">d</span>.<span class="ruby-identifier">move</span>; <span class="ruby-identifier">d</span>.<span class="ruby-identifier">move</span>; <span class="ruby-identifier">d</span>.<span class="ruby-identifier">move</span>
+  <span class="ruby-identifier">assert_equal</span>( <span class="ruby-identifier">d</span>.<span class="ruby-identifier">pulseStep</span>, <span class="ruby-value">0</span>, <span class="ruby-string">&quot;Pulse should have wrapped around after 3x2 moves&quot;</span>)
+  <span class="ruby-identifier">assert_equal</span>( <span class="ruby-identifier">d</span>.<span class="ruby-identifier">color</span>, <span class="ruby-ivar">@aColor</span> )       
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- testColorChange-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- testColorChange-method -->
+
+    
+      <div id="method-i-testInitializeAttributes" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">testInitializeAttributes</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="testInitializeAttributes-source">
+            <pre><span class="ruby-comment"># File tc_dot.rb, line 13</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">testInitializeAttributes</span>
+  <span class="ruby-ivar">@aColor</span> = <span class="ruby-constant">Gosu</span><span class="ruby-operator">::</span><span class="ruby-constant">Color</span>.<span class="ruby-identifier">new</span>( <span class="ruby-value">255</span>, <span class="ruby-value">200</span>, <span class="ruby-value">200</span>, <span class="ruby-value">200</span> )
+  <span class="ruby-identifier">d</span> = <span class="ruby-constant">Dot</span>.<span class="ruby-identifier">new</span>( <span class="ruby-value">10</span>, <span class="ruby-value">20</span>, <span class="ruby-ivar">@aColor</span>, <span class="ruby-value">25</span> )
+  <span class="ruby-identifier">assert_equal</span>( <span class="ruby-identifier">d</span>.<span class="ruby-identifier">x</span>, <span class="ruby-value">10</span> )
+  <span class="ruby-identifier">assert_equal</span>( <span class="ruby-identifier">d</span>.<span class="ruby-identifier">y</span>, <span class="ruby-value">20</span> )
+  <span class="ruby-identifier">assert_equal</span>( <span class="ruby-identifier">d</span>.<span class="ruby-identifier">color</span>, <span class="ruby-ivar">@aColor</span> )
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- testInitializeAttributes-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- testInitializeAttributes-method -->
+
+    
+      <div id="method-i-testInitializeCorrectClass" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">testInitializeCorrectClass</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="testInitializeCorrectClass-source">
+            <pre><span class="ruby-comment"># File tc_dot.rb, line 7</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">testInitializeCorrectClass</span>
+  <span class="ruby-ivar">@aColor</span> = <span class="ruby-constant">Gosu</span><span class="ruby-operator">::</span><span class="ruby-constant">Color</span>.<span class="ruby-identifier">new</span>( <span class="ruby-value">255</span>, <span class="ruby-value">200</span>, <span class="ruby-value">200</span>, <span class="ruby-value">200</span> )
+  <span class="ruby-identifier">d</span> = <span class="ruby-constant">Dot</span>.<span class="ruby-identifier">new</span>( <span class="ruby-value">10</span>, <span class="ruby-value">20</span>, <span class="ruby-ivar">@aColor</span>, <span class="ruby-value">25</span> )
+  <span class="ruby-identifier">assert_instance_of</span>( <span class="ruby-constant">Dot</span>, <span class="ruby-identifier">d</span>, <span class="ruby-string">&quot;Expected a Dot damnit!&quot;</span> )
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- testInitializeCorrectClass-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- testInitializeCorrectClass-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+

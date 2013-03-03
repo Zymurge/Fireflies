@@ -1,0 +1,7 @@
+require 'test/unit'
+require_relative 'tc_dot.rb'
+require_relative 'tc_dotObserver.rb'
+require_relative 'tc_dotManager.rb'
+require_relative 'tc_subjectFinder.rb'
+require_relative 'tc_movingAverage.rb'
+require_relative 'tc_statsMachine.rb'
