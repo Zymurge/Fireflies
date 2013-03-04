@@ -1,4 +1,4 @@
-require_relative 'subjectFinder.rb'
+require 'subjectFinder.rb'
 
 # This class manages what a given dot can observe from a collection of other dots
 class DotObserver

@@ -1,5 +1,5 @@
-require_relative 'dot.rb'
-require_relative 'dotObserver.rb'
+require 'dot.rb'
+require 'dotObserver.rb'
 
 # Creates and manages a collection of dot instances
 class DotManager

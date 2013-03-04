@@ -4,41 +4,39 @@ require 'Gosu'
 
 class Dot
   
-  ##
-  # :attr: x, y
+  # A unique identifier for a given dot instance
+  attr_reader :id
+
   # The current coords of the dot
-  # :attr: vec_x, vec_y
+  attr_reader :x, :y
+
   # The delta applied to current x, y when the move method is called
-  # :attr: pulse
-  # The number of steps required before a toggle between lit and unlit occurs
-  # :attr: pulseStep
-  # The current step number in a pulse sequence, counting a full cycle from lit through to the end of unlit (2x pulse)
-  attr_reader   :id, :x, :y, :vec_x, :vec_y, :pulse, :pulseStep
+  attr_reader :vec_x, :vec_y
+
+  # The number of steps required before a toggle between lit and unlit occurs. A full cycle is 2X pulse length
+  attr_reader :pulse
+
+  # The current step number in a pulse sequence, counting a full cycle from lit through to the end of unlit (2X pulse)
+  attr_reader :pulseStep
+  
+  # The observer instance for this dot instance
   attr_accessor :observer
   
+  # The following class variables are set as global boundaries for the dot universe. 
   @@xMin = @@xMax = @@yMin = @@yMax = nil
   @@rand = nil
   
-  def self.SetBoundaries( xmin, xmax, ymin, ymax ) 
-    @@xMin = xmin
-    @@xMax = xmax
-    @@yMin = ymin
-    @@yMax = ymax
-  end
-  
-  def self.SetRandom( rand )
-    @@rand = rand if rand.is_a? Random
-  end
-  
+  ##
   # Generates a dot instance
   #=== Arguments
+  # * id: A unique identifier for this instance
   # * x: the X coord
   # * y: the y coord
   # * color: a Gosu::Color instance
   # * pulse: the number increments before a color change occurs
-  # * pulseStep: the current increment to start with
-  # * fadeSteps: the number of increments to fade through (greater than 0, less than pulse)
-  # * totalFadePercent: the percentage of fade to apply at the end of the last step (0-100)
+  # * pulseStep: the current increment to start with.
+  # * fadeSteps: the number of increments to fade through (greater than 0, less than pulse).
+  # * totalFadePercent: the percentage of fade to apply at the end of the last step (0-100).
   def initialize( id, x, y, color, pulse, pulseStep=0, fadeSteps=5, totalFadePercent=80 )
     raise RuntimeError, "Must set boundaries for Dot class before constructing instance" if @@yMin.nil?
     
@@ -55,20 +53,95 @@ class Dot
     @lightPhases = Array.new
     @observer = nil
 
-    #puts "#{to_s}"
-    genLightPhases( fadeSteps, color, totalFadePercent )
+    # puts "#{to_s}"
+    gen_light_phases( fadeSteps, color, totalFadePercent )
   end
   
-  def to_s( step=0 )
-    #puts "x,y: #{@x},#{@y} / color: #{@lightPhases[step]} / pulse: #{@pulse} / fadeSteps: #{@fadeSteps} / totalFadePercent: #{@totalFadePercent}"
-    #puts "current step: #{@pulseStep} / current color: #{@lightPhases[@pulseStep]}"
+  def to_s
+    "x,y: #{coords_to_s} / pulse: #{@pulse} / current step: #{@pulseStep}"
   end
+  
+  ##
+  # Returns the current coords in an +x, y+ format
   
   def coords_to_s
     "#{x},#{y}"
   end
   
-  def genLightPhases( steps, firstColor, totalFadePercent )
+  ##
+  # Instructs the dot instance to cycle through a period of movement. Will pulse to the next color unless 
+  # increment_pulse is false
+  def cycle!( increment_pulse=true ) 
+    @color = next_color if increment_pulse
+    change_vector
+    move
+  end 
+  
+  ##
+  # Returns boolean response about whether this instance is in a lit state. 
+  # Cycling through the faded steps is considered not lit.
+  def is_lit?
+    return @pulseStep < @pulse
+  end
+  
+  ##
+  # Sets the class level boundaries. Must be called prior to initialization of an instance.
+  def self.SetBoundaries( xmin, xmax, ymin, ymax ) 
+    @@xMin = xmin
+    @@xMax = xmax
+    @@yMin = ymin
+    @@yMax = ymax
+  end
+  
+  ##
+  # Can be used to pass in a random generator (or mock) or will be set as a singleton upon first instantiation of a dot
+  def self.SetRandom( rand )
+    @@rand = rand if rand.is_a? Random
+  end
+  
+  private 
+  
+  def bounce
+    @vec_x *= -1 if ( @x > @@xMax && @vec_x > 0 ) || ( @x < @@xMin && @vec_x < 0 )
+    @vec_y *= -1 if ( @y > @@yMax && @vec_y > 0 ) || ( @y < @@yMin && @vec_y < 0 ) 
+  end
+
+  def change_vector( range=1 ) 
+    if( @@rand.rand( 0..2 ) < 1 ) then
+      @vec_x = @@rand.rand( range*-1..range ) 
+      @vec_y = @@rand.rand( range*-1..range )
+    end
+    bounce
+  end
+  
+  ##
+  # The current color of this instance
+  def color
+    @lightPhases[@pulseStep]
+  end
+  
+  def move
+    @x += @vec_x
+    @y += @vec_y
+  end
+  
+  ##
+  # Returns the correct color after incrementing pulse
+  def next_color()
+    @pulseStep += 1
+    @pulseStep = 0 if @pulseStep >= @pulse*2
+    color
+  end
+  
+  ##
+  # Returns the correct color after decrementing pulse
+  def backstep_color()
+    @pulseStep -= 1
+    @pulseStep = @pulse * 2 if @pulseStep < 0
+    color
+  end
+
+  def gen_light_phases( steps, firstColor, totalFadePercent )
     # debug
     # puts "genLightPhases.new( #{steps}, #{firstColor}, #{totalFadePercent} )"
     # gen the series of steps where color is at full brightness
@@ -105,47 +178,5 @@ class Dot
     
   end
 
-  def cycle( pulse ) 
-    change_vector
-    move( pulse )
-  end 
-  
-  def move( setNextColor=true )
-    @x += @vec_x
-    @y += @vec_y
-    @color = nextColor if setNextColor
-  end
-  
-  def change_vector( range=1 ) 
-    if( @@rand.rand( 0..2 ) < 1 ) then
-      @vec_x = @@rand.rand( range*-1..range ) 
-      @vec_y = @@rand.rand( range*-1..range )
-    end
-    bounce
-  end
-  
-  def bounce
-    @vec_x *= -1 if ( @x > @@xMax && @vec_x > 0 ) || ( @x < @@xMin && @vec_x < 0 )
-    @vec_y *= -1 if ( @y > @@yMax && @vec_y > 0 ) || ( @y < @@yMin && @vec_y < 0 ) 
-  end
-
-  def isLit?
-    return @pulseStep < @pulse
-  end
-  
-  def color
-    @lightPhases[@pulseStep]
-  end
-  
-  def nextColor()
-    @pulseStep += 1
-    @pulseStep = 0 if @pulseStep >= @pulse*2
-    color
-  end
-  
-  def backstepColor()
-    @pulseStep -= 1
-    @pulseStep = @pulse * 2 if @pulseStep < 0
-  end
   
 end

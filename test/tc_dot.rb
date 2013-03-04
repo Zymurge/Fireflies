@@ -1,5 +1,5 @@
-require "test/unit"
-require_relative "../dot.rb"
+require 'test/unit'
+require 'dot.rb'
 require 'gosu'
 
 class TestDots < Test::Unit::TestCase

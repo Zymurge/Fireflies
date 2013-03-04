@@ -1,5 +1,5 @@
-require_relative 'dot.rb'
-require_relative 'movingAverage.rb'
+require 'dot.rb'
+require 'movingAverage.rb'
 
 class StatsMachine
   

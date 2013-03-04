@@ -1,6 +1,5 @@
 require 'test/unit'
-require_relative '../statsMachine.rb'
-#require_relative '../dot.rb'
+require 'statsMachine.rb'
 
 class TestStatsMachine < Test::Unit::TestCase
   

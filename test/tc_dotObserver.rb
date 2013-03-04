@@ -1,6 +1,6 @@
-require "test/unit"
-require_relative "../dotObserver.rb"
-require_relative "../dot.rb"
+require 'test/unit'
+require 'dotObserver.rb'
+require 'dot.rb'
 require 'gosu'
 
 class TestDotObserver < Test::Unit::TestCase
@@ -125,6 +125,8 @@ class TestDotObserver < Test::Unit::TestCase
     assert_not_in_list( test3, result, "Expected item should not have made closest 5 neighbors list" )
   end
   
+  private
+  
   def assert_in_list( test, list, message )
     assert_not_nil( list.index( test ), message )
   end
@@ -140,15 +142,5 @@ class TestDotObserver < Test::Unit::TestCase
     end
     puts "End dump"
   end
-  
-  def DEPRECATED_testInitializeEnforceOddNumber
-    assert_equal( @dotList.count, 3, "Reusable input list should have 3 (odd) arguments" )
-    d = DotObserver.new( @dotList )
-    assert_not_nil( d, "Expected odd number list to pass initialization" )
-    @dotList << @dot_lit
-    assert_raises( ArgumentError, "Input list with 4 items should get bounced" ) {
-      d = DotObserver.new( @dotList )
-    }
-  end
-      
+
 end

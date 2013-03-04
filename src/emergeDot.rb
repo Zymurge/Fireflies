@@ -1,7 +1,7 @@
 require 'gosu'
-require_relative 'dot.rb'
-require_relative 'dotManager.rb'
-require_relative 'statsMachine.rb'
+require 'dot.rb'
+require 'dotManager.rb'
+require 'statsMachine.rb'
 
 class DisplayWindow < Gosu::Window
  
@@ -75,7 +75,7 @@ class DisplayWindow < Gosu::Window
 
   def move( dot )
     pulse = @dots.next_pulse?( dot )
-    dot.cycle( pulse )
+    dot.cycle!( pulse )
     # stat trackers
     @dot_cycles += 1
     @dot_pulse +=1 if pulse

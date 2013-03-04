@@ -1,5 +1,5 @@
 require 'test/unit'
-require_relative '../movingAverage.rb'
+require 'movingAverage.rb'
 
 class TestMovingAverage < Test::Unit::TestCase
   

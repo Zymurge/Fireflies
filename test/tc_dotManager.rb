@@ -1,5 +1,5 @@
 require 'test/unit'
-require_relative '../dotManager.rb'
+require 'dotManager.rb'
 
 class TestDotManager_Initializer < Test::Unit::TestCase
   

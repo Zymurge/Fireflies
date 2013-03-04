@@ -5,7 +5,7 @@
 <head>
   <meta content="text/html; charset=IBM437" http-equiv="Content-Type" />
 
-  <title>Class: DisplayWindow</title>
+  <title>Class: StatsMachine</title>
 
   <link rel="stylesheet" href="./rdoc.css" type="text/css" media="screen" />
 
@@ -34,8 +34,8 @@
         <div class="section-body">
           <ul>
           
-            <li><a href="./src/emergeDot_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
-              class="thickbox" title="src/emergeDot.rb">src/emergeDot.rb</a></li>
+            <li><a href="./src/statsMachine_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="src/statsMachine.rb">src/statsMachine.rb</a></li>
           
           </ul>
         </div>
@@ -50,7 +50,7 @@
       <div id="parent-class-section" class="section">
         <h3 class="section-header">Parent</h3>
         
-        <p class="link">Gosu::Window</p>
+        <p class="link">Object</p>
         
       </div>
       
@@ -67,7 +67,9 @@
           
           <li><a href="#method-c-new">::new</a></li>
           
-          <li><a href="#method-i-draw">#draw</a></li>
+          <li><a href="#method-i-periods">#periods</a></li>
+          
+          <li><a href="#method-i-stats">#stats</a></li>
           
           <li><a href="#method-i-update">#update</a></li>
           
@@ -129,7 +131,7 @@
   </div>
 
   <div id="documentation">
-    <h1 class="class">DisplayWindow</h1>
+    <h1 class="class">StatsMachine</h1>
 
     <div id="description" class="description">
       
@@ -143,59 +145,6 @@
 
       
 
-      
-      <!-- Constants -->
-      <div id="constants-list" class="section">
-        <h3 class="section-header">Constants</h3>
-        <dl>
-        
-          <dt><a name="BOTTOMEDGE">BOTTOMEDGE</a></dt>
-          
-          <dd class="description"></dd>
-          
-        
-          <dt><a name="FIXED_PULSE">FIXED_PULSE</a></dt>
-          
-          <dd class="description"></dd>
-          
-        
-          <dt><a name="LEFTEDGE">LEFTEDGE</a></dt>
-          
-          <dd class="description"></dd>
-          
-        
-          <dt><a name="NUM_DOTS">NUM_DOTS</a></dt>
-          
-          <dd class="description"></dd>
-          
-        
-          <dt><a name="NUM_OBSERVERS">NUM_OBSERVERS</a></dt>
-          
-          <dd class="description"></dd>
-          
-        
-          <dt><a name="REPORT_INTERVAL">REPORT_INTERVAL</a></dt>
-          
-          <dd class="description"></dd>
-          
-        
-          <dt><a name="RIGHTEDGE">RIGHTEDGE</a></dt>
-          
-          <dd class="description"></dd>
-          
-        
-          <dt><a name="THRESHOLD">THRESHOLD</a></dt>
-          
-          <dd class="description"></dd>
-          
-        
-          <dt><a name="TOPEDGE">TOPEDGE</a></dt>
-          
-          <dd class="description"></dd>
-          
-        
-        </dl>
-      </div>
       
 
       
@@ -212,7 +161,7 @@
           
           <div class="method-heading">
             <span class="method-name">new</span><span
-              class="method-args">()</span>
+              class="method-args">( dots_list )</span>
             <span class="method-click-advice">click to toggle source</span>
           </div>
           
@@ -225,17 +174,10 @@
             
             <div class="method-source-code" id="new-source">
 <pre>
-<span class="ruby-comment"># File src/emergeDot.rb, line 19</span>
- <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>
-   <span class="ruby-keyword">super</span> <span class="ruby-constant">RIGHTEDGE</span><span class="ruby-operator">+</span><span class="ruby-value">6</span>, <span class="ruby-constant">BOTTOMEDGE</span><span class="ruby-operator">+</span><span class="ruby-value">6</span>, <span class="ruby-keyword">false</span>
-   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">caption</span> = <span class="ruby-string">&quot;Emergent Dots&quot;</span>
-   <span class="ruby-ivar">@rand</span> = <span class="ruby-constant">Random</span>.<span class="ruby-identifier">new</span>
-   <span class="ruby-ivar">@dots</span> = <span class="ruby-constant">DotManager</span>.<span class="ruby-identifier">new</span>( <span class="ruby-constant">NUM_DOTS</span>, <span class="ruby-constant">LEFTEDGE</span>, <span class="ruby-constant">RIGHTEDGE</span>, <span class="ruby-constant">TOPEDGE</span>, <span class="ruby-constant">BOTTOMEDGE</span>, <span class="ruby-constant">NUM_OBSERVERS</span>, <span class="ruby-constant">THRESHOLD</span>, <span class="ruby-constant">FIXED_PULSE</span> )
-   
-   <span class="ruby-comment"># stats stuff -- move to it's own class at some point</span>
-   <span class="ruby-ivar">@machine</span> = <span class="ruby-constant">StatsMachine</span>.<span class="ruby-identifier">new</span>( <span class="ruby-ivar">@dots</span>.<span class="ruby-identifier">dots</span> )
-   <span class="ruby-ivar">@interval</span> = <span class="ruby-value">0</span>
-   <span class="ruby-ivar">@dot_cycles</span> = <span class="ruby-ivar">@dot_pulse</span> = <span class="ruby-value">0</span>
+<span class="ruby-comment"># File src/statsMachine.rb, line 6</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span> ( <span class="ruby-identifier">dots_list</span> )
+  <span class="ruby-ivar">@dots</span> = <span class="ruby-identifier">dots_list</span>   
+  <span class="ruby-ivar">@ma</span> = <span class="ruby-constant">MovingAverage</span>.<span class="ruby-identifier">new</span>( <span class="ruby-value">100</span> ) 
 <span class="ruby-keyword">end</span></pre>
             </div><!-- new-source -->
             
@@ -253,12 +195,46 @@
         <h3 class="section-header">Public Instance Methods</h3>
 
       
-        <div id="draw-method" class="method-detail ">
-          <a name="method-i-draw"></a>
+        <div id="periods-method" class="method-detail ">
+          <a name="method-i-periods"></a>
 
           
           <div class="method-heading">
-            <span class="method-name">draw</span><span
+            <span class="method-name">periods</span><span
+              class="method-args">( num )</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Returns the specified number of last periods, ordered from most recent to
+least</p>
+            
+
+            
+            <div class="method-source-code" id="periods-source">
+<pre>
+<span class="ruby-comment"># File src/statsMachine.rb, line 33</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">periods</span>( <span class="ruby-identifier">num</span> )
+  <span class="ruby-comment">#ma.</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- periods-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- periods-method -->
+
+      
+        <div id="stats-method" class="method-detail ">
+          <a name="method-i-stats"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">stats</span><span
               class="method-args">()</span>
             <span class="method-click-advice">click to toggle source</span>
           </div>
@@ -270,22 +246,22 @@
             
 
             
-            <div class="method-source-code" id="draw-source">
+            <div class="method-source-code" id="stats-source">
 <pre>
-<span class="ruby-comment"># File src/emergeDot.rb, line 45</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">draw</span>
-  <span class="ruby-ivar">@dots</span>.<span class="ruby-identifier">dots</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">dot</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">draw_dot</span>( <span class="ruby-identifier">dot</span> )
-  <span class="ruby-keyword">end</span>
+<span class="ruby-comment"># File src/statsMachine.rb, line 26</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">stats</span>
+  <span class="ruby-identifier">update</span>
+  <span class="ruby-identifier">result</span> = <span class="ruby-node">&quot;Stats: Percent=#{@ma.last_period}, ma10=#{@ma.average( 10 )}&quot;</span>
+  <span class="ruby-identifier">result</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- draw-source -->
+            </div><!-- stats-source -->
             
           </div>
 
           
 
           
-        </div><!-- draw-method -->
+        </div><!-- stats-method -->
 
       
         <div id="update-method" class="method-detail ">
@@ -307,19 +283,20 @@
             
             <div class="method-source-code" id="update-source">
 <pre>
-<span class="ruby-comment"># File src/emergeDot.rb, line 31</span>
+<span class="ruby-comment"># File src/statsMachine.rb, line 11</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
-  <span class="ruby-ivar">@dots</span>.<span class="ruby-identifier">dots</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">dot</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">move</span>( <span class="ruby-identifier">dot</span> )
+  <span class="ruby-identifier">lit</span> = <span class="ruby-value">0</span>
+  <span class="ruby-identifier">dark</span> = <span class="ruby-value">0</span>
+  <span class="ruby-ivar">@dots</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">dot</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">dot</span>.<span class="ruby-identifier">isLit?</span> <span class="ruby-keyword">then</span>
+      <span class="ruby-identifier">lit</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">dark</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+    <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>
   
-  <span class="ruby-ivar">@interval</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
-  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@interval</span> <span class="ruby-operator">%</span> <span class="ruby-constant">REPORT_INTERVAL</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span> <span class="ruby-keyword">then</span>
-    <span class="ruby-identifier">print_stats</span>
-    
-    <span class="ruby-ivar">@interval</span> = <span class="ruby-value">0</span>
-  <span class="ruby-keyword">end</span>
-  
+  <span class="ruby-identifier">percent</span> = <span class="ruby-identifier">lit</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">dark</span> <span class="ruby-operator">?</span> <span class="ruby-value">100</span> * <span class="ruby-identifier">dark</span> <span class="ruby-operator">/</span> <span class="ruby-ivar">@dots</span>.<span class="ruby-identifier">count</span> <span class="ruby-operator">:</span> <span class="ruby-value">100</span> * <span class="ruby-identifier">lit</span> <span class="ruby-operator">/</span> <span class="ruby-ivar">@dots</span>.<span class="ruby-identifier">count</span>
+  <span class="ruby-ivar">@ma</span>.<span class="ruby-identifier">push_period</span>( <span class="ruby-identifier">percent</span> )
 <span class="ruby-keyword">end</span></pre>
             </div><!-- update-source -->
             

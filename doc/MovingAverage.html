@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="IBM437"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta content="text/html; charset=IBM437" http-equiv="Content-Type" />
+
+  <title>Class: MovingAverage</title>
+
+  <link rel="stylesheet" href="./rdoc.css" type="text/css" media="screen" />
+
+  <script src="./js/jquery.js" type="text/javascript" charset="utf-8"></script>
+  <script src="./js/thickbox-compressed.js" type="text/javascript" charset="utf-8"></script>
+  <script src="./js/quicksearch.js" type="text/javascript" charset="utf-8"></script>
+  <script src="./js/darkfish.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+<body id="top" class="class">
+
+  <div id="metadata">
+    <div id="home-metadata">
+      <div id="home-section" class="section">
+        <h3 class="section-header">
+          <a href="./index.html">Home</a>
+          <a href="./index.html#classes">Classes</a>
+          <a href="./index.html#methods">Methods</a>
+        </h3>
+      </div>
+    </div>
+
+    <div id="file-metadata">
+      <div id="file-list-section" class="section">
+        <h3 class="section-header">In Files</h3>
+        <div class="section-body">
+          <ul>
+          
+            <li><a href="./src/movingAverage_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="src/movingAverage.rb">src/movingAverage.rb</a></li>
+          
+          </ul>
+        </div>
+      </div>
+
+      
+    </div>
+
+    <div id="class-metadata">
+      
+      <!-- Parent Class -->
+      <div id="parent-class-section" class="section">
+        <h3 class="section-header">Parent</h3>
+        
+        <p class="link">Object</p>
+        
+      </div>
+      
+
+      
+
+      
+
+      
+      <!-- Method Quickref -->
+      <div id="method-list-section" class="section">
+        <h3 class="section-header">Methods</h3>
+        <ul class="link-list">
+          
+          <li><a href="#method-c-new">::new</a></li>
+          
+          <li><a href="#method-i-average">#average</a></li>
+          
+          <li><a href="#method-i-fetch_periods">#fetch_periods</a></li>
+          
+          <li><a href="#method-i-last_period">#last_period</a></li>
+          
+          <li><a href="#method-i-push_period">#push_period</a></li>
+          
+        </ul>
+      </div>
+      
+
+      
+    </div>
+
+    <div id="project-metadata">
+      
+      
+      <div id="fileindex-section" class="section project-section">
+        <h3 class="section-header">Files</h3>
+        <ul>
+        
+          <li class="file"><a href="./README.html">README</a></li>
+        
+        </ul>
+      </div>
+      
+
+      <div id="classindex-section" class="section project-section">
+        <h3 class="section-header">Class/Module Index
+          <span class="search-toggle"><img src="./images/find.png"
+            height="16" width="16" alt="[+]"
+            title="show/hide quicksearch" /></span></h3>
+        <form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+        <fieldset>
+          <legend>Quicksearch</legend>
+          <input type="text" name="quicksearch" value=""
+            class="quicksearch-field" />
+        </fieldset>
+        </form>
+
+        <ul class="link-list">
+        
+          <li><a href="./DisplayWindow.html">DisplayWindow</a></li>
+        
+          <li><a href="./Dot.html">Dot</a></li>
+        
+          <li><a href="./DotManager.html">DotManager</a></li>
+        
+          <li><a href="./DotObserver.html">DotObserver</a></li>
+        
+          <li><a href="./MovingAverage.html">MovingAverage</a></li>
+        
+          <li><a href="./StatsMachine.html">StatsMachine</a></li>
+        
+          <li><a href="./SubjectFinder.html">SubjectFinder</a></li>
+        
+        </ul>
+        <div id="no-class-search-results" style="display: none;">No matching classes.</div>
+      </div>
+
+      
+    </div>
+  </div>
+
+  <div id="documentation">
+    <h1 class="class">MovingAverage</h1>
+
+    <div id="description" class="description">
+      
+<p>Provides fucntionality to collect N periods of data and to generate a
+moving average of the requested number of previous periods. Uses a rolling
+buffer to age out period N+1 as new entries are added. Works with input as
+either integers or strings containing integer values.</p>
+
+    </div><!-- description -->
+
+    
+    
+    
+    <div id="5Buntitled-5D" class="documentation-section">
+      
+
+      
+
+      
+
+      
+      <!-- Attributes -->
+      <div id="attribute-method-details" class="method-section section">
+        <h3 class="section-header">Attributes</h3>
+
+        
+        <div id="max_periods-attribute-method" class="method-detail">
+          <a name="max_periods"></a>
+          
+          <div class="method-heading attribute-method-heading">
+            <span class="method-name">max_periods</span><span
+              class="attribute-access-type">[R]</span>
+          </div>
+
+          <div class="method-description">
+          
+          <p>The number of periods tracked by this object</p>
+          
+          </div>
+        </div>
+        
+      </div><!-- attribute-method-details -->
+      
+
+      <!-- Methods -->
+      
+      <div id="public-class-method-details" class="method-section section">
+        <h3 class="section-header">Public Class Methods</h3>
+
+      
+        <div id="new-method" class="method-detail ">
+          <a name="method-c-new"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">new</span><span
+              class="method-args">( max_periods )</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Creates an instance of size <em><a
+href="MovingAverage.html#attribute-i-max_periods">max_periods</a></em> with
+all initial values set to zero. Raises ArgumentError if the input format is
+not either an Integer or a string that parses to Integer</p>
+            
+
+            
+            <div class="method-source-code" id="new-source">
+<pre>
+<span class="ruby-comment"># File src/movingAverage.rb, line 21</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>( <span class="ruby-identifier">max_periods</span> )
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-string">&quot;max_periods must be numeric&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span> <span class="ruby-constant">Integer</span>( <span class="ruby-identifier">max_periods</span> )
+  <span class="ruby-ivar">@max_periods</span> = <span class="ruby-constant">Integer</span>( <span class="ruby-identifier">max_periods</span> )
+  <span class="ruby-ivar">@periods</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>( <span class="ruby-ivar">@max_periods</span>, <span class="ruby-value">0</span> )
+  <span class="ruby-ivar">@idx</span> = <span class="ruby-value">0</span>    
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- new-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- new-method -->
+
+      
+      </div><!-- public-class-method-details -->
+    
+      <div id="public-instance-method-details" class="method-section section">
+        <h3 class="section-header">Public Instance Methods</h3>
+
+      
+        <div id="average-method" class="method-detail ">
+          <a name="method-i-average"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">average</span><span
+              class="method-args">( num_periods )</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Returns the average value for the last <em>num_periods</em></p>
+            
+
+            
+            <div class="method-source-code" id="average-source">
+<pre>
+<span class="ruby-comment"># File src/movingAverage.rb, line 30</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">average</span>( <span class="ruby-identifier">num_periods</span> )
+  <span class="ruby-identifier">total</span> = <span class="ruby-value">0</span>
+  <span class="ruby-identifier">curr</span> = <span class="ruby-ivar">@idx</span>
+  <span class="ruby-identifier">num_periods</span>.<span class="ruby-identifier">times</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">curr</span> = <span class="ruby-identifier">prev_index</span>( <span class="ruby-identifier">curr</span> ) 
+    <span class="ruby-identifier">total</span> <span class="ruby-operator">+=</span> <span class="ruby-ivar">@periods</span>[<span class="ruby-identifier">curr</span>]
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">total</span> <span class="ruby-operator">/</span> <span class="ruby-identifier">num_periods</span>  
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- average-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- average-method -->
+
+      
+        <div id="fetch_periods-method" class="method-detail ">
+          <a name="method-i-fetch_periods"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">fetch_periods</span><span
+              class="method-args">( num )</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Returns an array of the last <em>num</em> of periods in LIFO order</p>
+            
+
+            
+            <div class="method-source-code" id="fetch_periods-source">
+<pre>
+<span class="ruby-comment"># File src/movingAverage.rb, line 57</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">fetch_periods</span>( <span class="ruby-identifier">num</span> )
+  <span class="ruby-identifier">result</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">num</span> )
+  <span class="ruby-identifier">i</span> = <span class="ruby-identifier">prev_index</span>( <span class="ruby-ivar">@idx</span> )
+  <span class="ruby-identifier">num</span>.<span class="ruby-identifier">times</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">j</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">i</span> = <span class="ruby-identifier">prev_index</span>( <span class="ruby-identifier">i</span> )
+    <span class="ruby-identifier">result</span>[<span class="ruby-identifier">j</span><span class="ruby-operator">-</span><span class="ruby-value">1</span>] = <span class="ruby-ivar">@periods</span>[<span class="ruby-identifier">i</span>]
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">result</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- fetch_periods-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- fetch_periods-method -->
+
+      
+        <div id="last_period-method" class="method-detail ">
+          <a name="method-i-last_period"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">last_period</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Returns the value of the last period entered</p>
+            
+
+            
+            <div class="method-source-code" id="last_period-source">
+<pre>
+<span class="ruby-comment"># File src/movingAverage.rb, line 51</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">last_period</span>
+  <span class="ruby-ivar">@periods</span>[<span class="ruby-identifier">prev_index</span>( <span class="ruby-ivar">@idx</span> )]    
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- last_period-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- last_period-method -->
+
+      
+        <div id="push_period-method" class="method-detail ">
+          <a name="method-i-push_period"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">push_period</span><span
+              class="method-args">( value )</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Adds the specified <em>value</em> as the most recent period, aging out the
+oldest entry if needed</p>
+            
+
+            
+            <div class="method-source-code" id="push_period-source">
+<pre>
+<span class="ruby-comment"># File src/movingAverage.rb, line 42</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">push_period</span>( <span class="ruby-identifier">value</span> )
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-string">&quot;push_period 'value' param must be numeric&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span> <span class="ruby-constant">Integer</span>( <span class="ruby-identifier">value</span> )
+  <span class="ruby-identifier">myValue</span> = <span class="ruby-constant">Integer</span>( <span class="ruby-identifier">value</span> )
+  <span class="ruby-ivar">@periods</span>[<span class="ruby-ivar">@idx</span>] = <span class="ruby-identifier">myValue</span>
+  <span class="ruby-ivar">@idx</span> = <span class="ruby-identifier">next_index</span>( <span class="ruby-ivar">@idx</span> )   
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- push_period-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- push_period-method -->
+
+      
+      </div><!-- public-instance-method-details -->
+    
+    </div><!-- 5Buntitled-5D -->
+  
+
+  </div><!-- documentation -->
+
+  <div id="validator-badges">
+    <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+    <p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
+      Rdoc Generator</a> 2</small>.</p>
+  </div>
+
+</body>
+</html>
+
