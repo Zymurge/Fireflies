@@ -20,17 +20,32 @@ class DisplayWindow < Gosu::Window
     super RIGHTEDGE+6, BOTTOMEDGE+6, false
     self.caption = "Emergent Dots"
     @rand = Random.new
-    @dots = DotManager.new( NUM_DOTS, LEFTEDGE, RIGHTEDGE, TOPEDGE, BOTTOMEDGE, NUM_OBSERVERS, THRESHOLD, FIXED_PULSE )
+    @dots = DotManager.new( NUM_DOTS, LEFTEDGE, RIGHTEDGE, TOPEDGE, BOTTOMEDGE, 
+                            NUM_OBSERVERS, THRESHOLD, FIXED_PULSE )
     
     # stats stuff -- move to it's own class at some point
     @machine = StatsMachine.new( @dots.dots )
     @interval = 0
     @dot_cycles = @dot_pulse = 0
- end
+  end
     
+  ##
+  # Hit ESC to quick quit
+  def button_down( id )
+    if id == Gosu::KbEscape
+      close
+    end
+  end
+
+  def draw
+    @dots.dots.each do |dot|
+      draw_dot( dot )
+    end
+  end
+ 
   def update
     @dots.dots.each do |dot|
-      move( dot )
+      cycle( dot )
     end
     
     @interval += 1
@@ -38,16 +53,9 @@ class DisplayWindow < Gosu::Window
       print_stats
       
       @interval = 0
-    end
-    
+    end  
   end
-  
-  def draw
-    @dots.dots.each do |dot|
-      draw_dot( dot )
-    end
-  end
- 
+
   private
       
   def draw_dot( dot )
@@ -73,7 +81,7 @@ class DisplayWindow < Gosu::Window
     draw_quad( x1, y1, clr, x2, y1, clr, x2, y2, clr, x1, y2, clr )
   end
 
-  def move( dot )
+  def cycle( dot )
     pulse = @dots.next_pulse?( dot )
     dot.cycle!( pulse )
     # stat trackers
