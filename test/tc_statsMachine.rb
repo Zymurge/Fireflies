@@ -28,7 +28,7 @@ class TestStatsMachine < Test::Unit::TestCase
   def testUpdateAndFetch
     sm = StatsMachine.new( @dots )
     sm.update
-    actual = Integer( sm.periods( 1 ) )
+    actual = sm.periods( 1 ).first
     assert_equal( 50, actual, "Initial percent for untouched standard test array should be 50")
   end
   
