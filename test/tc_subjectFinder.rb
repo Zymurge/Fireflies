@@ -1,4 +1,5 @@
 require 'test/unit'
+load 'testBoolean.rb'
 require 'gosu'
 require_relative '../src/subjectFinder.rb'
 require_relative '../src/dot.rb'

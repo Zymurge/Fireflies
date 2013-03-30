@@ -1,4 +1,5 @@
 require 'test/unit'
+load 'testBoolean.rb'
 require 'gosu'
 require_relative '../src/dotObserver.rb'
 require_relative '../src/dot.rb'
@@ -6,7 +7,7 @@ require_relative '../src/dot.rb'
 class TestDotObserver < Test::Unit::TestCase
 
   def setup
-    Dots.SetBoundaries( 100, 100 )
+    Dot.SetBoundaries( 1, 100, 1, 100 )
     
     @c1 = Gosu::Color.new( 255, 200, 200, 200 )
     
