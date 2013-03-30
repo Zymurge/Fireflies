@@ -6,6 +6,10 @@
 #
 #--
 #
+# Implementation Notes:
+#  * @idx always points to the next available period to store. 
+#  * Use the next_index and prev_index methods to navigate the circular buffer safely.
+#
 # TODO:
 # * add floating point functionality
 # * provide averages for periods other than ending with the most recent addition
@@ -39,12 +43,15 @@ class MovingAverage
   end
   
   ##
-  # Adds the specified _value_ as the most recent period, aging out the oldest entry if needed
-  def push_period( value )
-    raise ArgumentError, "push_period 'value' param must be numeric" if ! Integer( value )
-    myValue = Integer( value )
-    @periods[@idx] = myValue
-    @idx = next_index( @idx )   
+  # Returns an array of the last _num_ of periods in LIFO order
+  def fetch_periods( num )
+    result = Array.new( num )
+    i = @idx
+    num.times do |j|
+      i = prev_index( i )
+      result[j] = @periods[i]
+    end
+    result
   end
   
   ##
@@ -54,15 +61,12 @@ class MovingAverage
   end
   
   ##
-  # Returns an array of the last _num_ of periods in LIFO order
-  def fetch_periods( num )
-    result = Array.new( num )
-    i = prev_index( @idx )
-    num.times do |j|
-      i = prev_index( i )
-      result[j-1] = @periods[i]
-    end
-    result
+  # Adds the specified _value_ as the most recent period, aging out the oldest entry if needed
+  def push_period( value )
+    raise ArgumentError, "push_period 'value' param must be numeric" if ! Integer( value )
+    myValue = Integer( value )
+    @periods[@idx] = myValue
+    @idx = next_index( @idx )   
   end
   
   private

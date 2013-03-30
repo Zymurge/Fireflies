@@ -15,7 +15,7 @@ class TestStatsMachine < Test::Unit::TestCase
     
     @dots.each_with_index do | dot, i |
       @dots[i] = i%2 == 0 ? @dot_dark.clone : @dot_lit.clone
-  end
+ 		end
     
   end
   
@@ -49,6 +49,7 @@ class TestStatsMachine < Test::Unit::TestCase
     sm.update
     
     actual = sm.periods( 3 )
+		assert_not_nil( actual, "periods method shouldn't be returning nil" )
     assert_equal( expected, actual, "LIFO not as we know it" )
   end
   

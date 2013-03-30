@@ -31,7 +31,7 @@ class StatsMachine
   
   # Returns the specified number of last periods, ordered from most recent to least
   def periods( num )
-    #ma.
+    @ma.fetch_periods( num )
   end
 
 end
