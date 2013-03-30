@@ -1,9 +1,10 @@
 Fireflies is an experiment I built to learn some basic AI around emergent patterns. 
 
-The basic premise is to simulate a swarm of fireflies dancing around a grid with each starting at a 
-random point within their lit/unlit cycles. A given dot will observe the state of it's neighbors to 
-determine if a majority are in opposition to it's current state. If so, it will incrementally adjust 
-it's own cycle (phase decay) to wait for the others. The goal is to find an algorithm that let's the 
+The basic premise is to simulate a swarm of fireflies dancing around a grid with 
+each starting at a random point within their lit/unlit cycles. A given dot will
+observe the state of it's neighbors to determine if a majority are in opposition 
+to it's current state. If so, it will incrementally adjust it's own cycle (phase
+decay) to wait for the others. The goal is to find an algorithm that let's the 
 group emerge into fully synchronized light cycles.
 
 The project is built in Ruby and uses the Gosu graphics library to simulate the fireflies visualization.

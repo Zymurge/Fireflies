@@ -1,7 +1,8 @@
 ##
-# Provides fucntionality to collect N periods of data and to generate a moving average of the requested number
-# of previous periods. Uses a rolling buffer to age out period N+1 as new entries are added. Works with input as either
-# integers or strings containing integer values.
+# Provides functionality to collect N periods of data and to generate a moving average of the 
+# requested number of previous periods. Uses a rolling buffer to age out period N+1 as new
+# entries are added. 
+# Works with input as either integers or strings containing integer values.
 #
 #--
 #

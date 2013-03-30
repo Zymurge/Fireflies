@@ -1,6 +1,7 @@
-require 'Gosu'
+require 'gosu'
 
-# Represents all of the state for a single instance of a dot. Includes helper methods to trigger incremental changes in dot state.
+# Represents all of the state for a single instance of a dot. Includes helper methods to trigger incremental 
+# changes in dot state.
 
 class Dot
   
@@ -13,10 +14,12 @@ class Dot
   # The delta applied to current x, y when the move method is called
   attr_reader :vec_x, :vec_y
 
-  # The number of steps required before a toggle between lit and unlit occurs. A full cycle is 2X pulse length
+  # The number of steps required before a toggle between lit and unlit occurs. 
+  # A full cycle is 2X pulse length
   attr_reader :pulse
 
-  # The current step number in a pulse sequence, counting a full cycle from lit through to the end of unlit (2X pulse)
+  # The current step number in a pulse sequence, counting a full cycle from lit through to the end of 
+  # unlit (2X pulse)
   attr_reader :pulseStep
   
   # The observer instance for this dot instance
@@ -57,13 +60,14 @@ class Dot
     gen_light_phases( fadeSteps, color, totalFadePercent )
   end
   
-  def to_s
-    "x,y: #{coords_to_s} / pulse: #{@pulse} / current step: #{@pulseStep}"
+  ##
+  # The current color of this instance
+  def color
+    @lightPhases[@pulseStep]
   end
   
   ##
   # Returns the current coords in an +x, y+ format
-  
   def coords_to_s
     "#{x},#{y}"
   end
@@ -94,9 +98,14 @@ class Dot
   end
   
   ##
-  # Can be used to pass in a random generator (or mock) or will be set as a singleton upon first instantiation of a dot
+  # Can be used to pass in a random generator (or mock) or will be set as a singleton upon first 
+  # instantiation of a dot
   def self.SetRandom( rand )
     @@rand = rand if rand.is_a? Random
+  end
+  
+  def to_s
+    "x,y: #{coords_to_s} / pulse: #{@pulse} / current step: #{@pulseStep}"
   end
   
   private 
@@ -112,12 +121,6 @@ class Dot
       @vec_y = @@rand.rand( range*-1..range )
     end
     bounce
-  end
-  
-  ##
-  # The current color of this instance
-  def color
-    @lightPhases[@pulseStep]
   end
   
   def move

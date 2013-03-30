@@ -1,7 +1,7 @@
 require 'test/unit'
-require 'subjectFinder.rb'
-require 'dot.rb'
 require 'gosu'
+require_relative '../src/subjectFinder.rb'
+require_relative '../src/dot.rb'
 
 class TestBetween < Test::Unit::TestCase
     

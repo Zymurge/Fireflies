@@ -1,6 +1,6 @@
 require 'test/unit'
-require 'dot.rb'
 require 'gosu'
+require_relative '../src/dot.rb'
 
 class TestDots < Test::Unit::TestCase
     
@@ -80,23 +80,23 @@ class TestDots < Test::Unit::TestCase
     # p "Start testIsLitThroughCycle"
     @aColor = Gosu::Color.new( 255, 200, 200, 200 )
     d = Dot.new( 19, 10, 20, @aColor, 12, 0, 2, 50 )
-    assert_true( d.isLit?, "A newly built dot should start lit" )
+    assert_true( d.is_lit?, "A newly built dot should start lit" )
 
     # move until color change is detected
     d.move
     while( d.color == @aColor )
-      assert_true( d.isLit?, "A dot should be lit with start color active" )
+      assert_true( d.is_lit?, "A dot should be lit with start color active" )
       d.move
     end
     # p "pulse: #{d.pulse}, pulseStep: #{d.pulseStep}"
-    assert_false( d.isLit?, "A dot should not be lit when color fade begins" )
+    assert_false( d.is_lit?, "A dot should not be lit when color fade begins" )
     # move until color restores to normal
     d.move
     while( d.color != @aColor )
-      assert_false( d.isLit?, "A dot should not be lit until color returns to start")
+      assert_false( d.is_lit?, "A dot should not be lit until color returns to start")
       d.move
     end
-    assert_true( d.isLit?, "A dot should be lit when color is active after a cycle" )   
+    assert_true( d.is_lit?, "A dot should be lit when color is active after a cycle" )   
   end
   
 end

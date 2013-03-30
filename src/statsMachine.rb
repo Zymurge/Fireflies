@@ -1,5 +1,5 @@
-require 'dot.rb'
-require 'movingAverage.rb'
+require_relative 'dot.rb'
+require_relative 'movingAverage.rb'
 
 class StatsMachine
   
@@ -12,7 +12,7 @@ class StatsMachine
     lit = 0
     dark = 0
     @dots.each do |dot|
-      if dot.isLit? then
+      if dot.is_lit? then
         lit += 1
       else
         dark += 1

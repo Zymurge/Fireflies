@@ -1,5 +1,5 @@
-require 'dot.rb'
-require 'dotObserver.rb'
+require_relative 'dot.rb'
+require_relative 'dotObserver.rb'
 
 # Creates and manages a collection of dot instances
 class DotManager
@@ -70,7 +70,7 @@ class DotManager
     lit = 0
     dark = 0
     @dots.each do |dot|
-      if dot.isLit? then
+      if dot.is_lit? then
         lit += 1
       else
         dark += 1
@@ -89,14 +89,14 @@ class DotManager
   def next_pulse?( dot )
     return if nil == dot
     obs_state = observers_state_lit?( dot )
-    my_state  = dot.isLit?
+    my_state  = dot.is_lit?
     if ( $DEBUG && dot.id == 2 ) then
-      p "Status: Dot ##{dot.id} @#{dot.coords_to_s} reflect: isLit: #{dot.isLit?}. Pulse #{dot.pulseStep}. Observed: #{obs_state}"
+      p "Status: Dot ##{dot.id} @#{dot.coords_to_s} reflect: is_lit: #{dot.is_lit?}. Pulse #{dot.pulseStep}. Observed: #{obs_state}"
     end
   
     if ( obs_state == true && my_state == false ) then
       if ( $DEBUG && dot.id <= 2 ) then
-        puts "Dot ##{dot.id} @#{dot.coords_to_s} adjusting to observees. isLit: #{dot.isLit?}. Pulse #{dot.pulseStep}. Threshold #{dot.observer.threshold}" 
+        puts "Dot ##{dot.id} @#{dot.coords_to_s} adjusting to observees. is_lit: #{dot.is_lit?}. Pulse #{dot.pulseStep}. Threshold #{dot.observer.threshold}" 
       end
       # Observees lit, I'm not, don't go forward
       adjust_threshold( dot )

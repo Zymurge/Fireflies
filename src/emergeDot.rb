@@ -1,7 +1,7 @@
 require 'gosu'
-require 'dot.rb'
-require 'dotManager.rb'
-require 'statsMachine.rb'
+require_relative 'dot.rb'
+require_relative 'dotManager.rb'
+require_relative 'statsMachine.rb'
 
 class DisplayWindow < Gosu::Window
  

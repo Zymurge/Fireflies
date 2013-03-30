@@ -1,7 +1,7 @@
 require 'test/unit'
-require 'dotObserver.rb'
-require 'dot.rb'
 require 'gosu'
+require_relative '../src/dotObserver.rb'
+require_relative '../src/dot.rb'
 
 class TestDotObserver < Test::Unit::TestCase
 

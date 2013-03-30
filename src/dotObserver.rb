@@ -1,4 +1,4 @@
-require 'subjectFinder.rb'
+require_relative 'subjectFinder.rb'
 
 # This class manages what a given dot can observe from a collection of other dots
 class DotObserver
@@ -34,7 +34,7 @@ class DotObserver
   def subjects_to_s
     result = "AVG: #{is_observed_average_lit?} - "
     subjects.each do |s|
-      result += "id##{s.id}:#{s.isLit?}; "
+      result += "id##{s.id}:#{s.is_lit?}; "
     end
     result
   end
@@ -55,8 +55,8 @@ class DotObserver
     @subjects = @finder.find_next_centered( @numObserver )
     @subjects.each do |dot|
       raise RuntimeError, "expected Dot instance, got #{dot.class}" unless dot.instance_of? Dot
-      total += 100 if dot.isLit?
-      # puts "observe: #{dot.isLit?} / total: #{total}"
+      total += 100 if dot.is_lit?
+      # puts "observe: #{dot.is_lit?} / total: #{total}"
     end
     percentLit = total / @subjects.length
     
