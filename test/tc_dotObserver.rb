@@ -1,5 +1,5 @@
 require 'test/unit'
-load 'testBoolean.rb'
+require_relative 'testBoolean.rb'
 require 'gosu'
 require_relative '../src/dotObserver.rb'
 require_relative '../src/dot.rb'
@@ -78,7 +78,6 @@ class TestDotObserver < Test::Unit::TestCase
     # puts "\ntestObserveAverageLitStateIsOn begin ..."
     d = DotObserver.new( dotList, @dotMe, 100, 100, 5 )
     state = d.is_observed_average_lit?
-#    assert_equal( state, true, "3 of 5 lit dots should return true" )
     assert_true( state, "3 of 5 lit dots should return true" )
   end
 
@@ -115,9 +114,9 @@ class TestDotObserver < Test::Unit::TestCase
     
     result = DotObserver.new( candidates, myDot, 100, 100, 5 ).subjects
     # debug
-    result.each do |dot|
-      p "Dot id:#{dot.id}"
-    end
+    # result.each do |dot|
+    #   p "Dot id:#{dot.id}"
+    # end
     
     assert_not_nil( result, "DotObserver.select_subjects should not return nil object, array expected" )
     assert_instance_of( Array, result, "DotObserver.select_subjects should return an array of dot isntances" )

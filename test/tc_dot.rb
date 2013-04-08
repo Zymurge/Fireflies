@@ -1,5 +1,5 @@
 require 'test/unit'
-load 'testBoolean.rb'
+require_relative 'testBoolean.rb'
 require 'gosu'
 require_relative '../src/dot.rb'
 

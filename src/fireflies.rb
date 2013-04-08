@@ -42,6 +42,10 @@ class DisplayWindow < Gosu::Window
     @interval = 0
     @show_stats = true
     @dot_cycles = @dot_pulse = 0
+
+    # debug
+    @debug_mode = false
+
   end
     
   ##
@@ -50,14 +54,15 @@ class DisplayWindow < Gosu::Window
   # + ESC:   Quick quit
   #
   def button_down( id )
-    if id == Gosu::MsLeft
+		case id    
+		when Gosu::MsLeft
       process_mouse_click
-    end
-    if id == Gosu::KbSpace
+    when Gosu::KbSpace
       @show_stats = ! @show_stats
-    end
-    if id == Gosu::KbEscape
+    when Gosu::KbEscape
       close
+    when Gosu::KbD
+      @debug_mode = !@debug_mode
     end
   end
 
@@ -68,6 +73,7 @@ class DisplayWindow < Gosu::Window
     draw_dot_highlight( @dots.highlighted_dot )
 
     draw_stats
+    debug_cycle
   end
  
   def update
@@ -76,11 +82,6 @@ class DisplayWindow < Gosu::Window
     end
    
     update_stats
-  end
-
-  def process_mouse_click
-    p "Mouse clicked @ #{self.mouse_x},#{self.mouse_y}"
-    @dots.highlight_dot( mouse_x, mouse_y, CLICK_RANGE )
   end
 
   private
@@ -135,10 +136,22 @@ class DisplayWindow < Gosu::Window
     end
   end
 
+  def debug_cycle
+    if @debug_mode
+      @font.draw( "Debug on", RIGHTEDGE-50, 10, Z_TEXT, 1.0, 1.0, 0xffff3333 )
+    end
+  end
+
+
   ##
   # Overrides Gosu's default no cursor displayed mode
   def needs_cursor?
     true
+  end
+
+  def process_mouse_click
+    p "Mouse clicked @ #{self.mouse_x},#{self.mouse_y}" if @debug_mode
+    @dots.highlight_dot( mouse_x, mouse_y, CLICK_RANGE )
   end
 
   def update_stats
@@ -147,7 +160,7 @@ class DisplayWindow < Gosu::Window
       adjustments = @dot_cycles - @dot_pulse
       @stats_snapshot = @machine.stats
       @interval = @dot_cycles = @dot_pulse = 0
-      p "#{@stats_snapshot}, Adjustments: #{adjustments} in #{@dot_cycles} cycles"
+      p "#{@stats_snapshot}, Adjustments: #{adjustments} in #{@dot_cycles} cycles" if @debug_mode
     end
   end
 
