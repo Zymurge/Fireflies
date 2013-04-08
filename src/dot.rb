@@ -73,12 +73,13 @@ class Dot
   end
   
   ##
-  # Instructs the dot instance to cycle through a period of movement. Will pulse to the next color unless 
-  # increment_pulse is false
-  def cycle!( increment_pulse=true ) 
+  # Instructs the dot instance to cycle through a period of movement. 
+  # Will pulse to the next color unless increment_pulse is false
+  # Will pause movement if do_move if false
+  def cycle!( increment_pulse=true, do_move=true ) 
     @color = next_color if increment_pulse
     change_vector
-    move
+    move if do_move
   end 
   
   ##

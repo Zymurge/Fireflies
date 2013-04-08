@@ -45,6 +45,7 @@ class DisplayWindow < Gosu::Window
 
     # debug
     @debug_mode = false
+    @movement_mode = true
 
   end
     
@@ -63,6 +64,8 @@ class DisplayWindow < Gosu::Window
       close
     when Gosu::KbD
       @debug_mode = !@debug_mode
+		when Gosu::KbM
+			@movement_mode = !@movement_mode
     end
   end
 
@@ -96,7 +99,7 @@ class DisplayWindow < Gosu::Window
       
   def cycle( dot )
     pulse = @dots.next_pulse?( dot )
-    dot.cycle!( pulse )
+    dot.cycle!( pulse, @movement_mode )
     # stat trackers
     @dot_cycles += 1
     @dot_pulse +=1 if pulse
