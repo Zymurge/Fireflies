@@ -13,7 +13,7 @@ class DisplayWindow < Gosu::Window
   RIGHTEDGE = 500
   BOTTOMEDGE = 400
   
-  NUM_DOTS = 15
+  NUM_DOTS = 32
   NUM_OBSERVERS = 9
   FIXED_PULSE = 50
   THRESHOLD = 78
@@ -35,7 +35,8 @@ class DisplayWindow < Gosu::Window
     @font = Gosu::Font.new( self, Gosu::default_font_name, 12 )
 
     # pre-create a circle image for highlighting
-		@highlight_circle = create_highlight_circle
+		@highlight_target  = create_highlight_circle( :red )
+		@highlight_subject = create_highlight_circle( :blue )
     
     # stats stuff
     @machine = StatsMachine.new( @dots.dots )
@@ -89,10 +90,10 @@ class DisplayWindow < Gosu::Window
 
   private
 
-	def create_highlight_circle
+	def create_highlight_circle( color )
     img = TexPlay::create_blank_image( self, 15, 15 )
     img.paint {
-			circle( 7, 7, 6, :color => :red, :thickness => 1 )
+			circle( 7, 7, 7, :color => color, :thickness => 1 )
     }
 		img
   end
@@ -130,7 +131,10 @@ class DisplayWindow < Gosu::Window
 
   def draw_dot_highlight( dot )
     return if nil == dot
-    @highlight_circle.draw( dot.x-7, dot.y-7, Z_HIGH )
+    @highlight_target.draw( dot.x-7, dot.y-7, Z_HIGH )
+    dot.observer.subjects.each do |sub|
+      @highlight_subject.draw( sub.x-8, sub.y-8, Z_HIGH )
+    end
   end
 
   def draw_stats

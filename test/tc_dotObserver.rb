@@ -66,12 +66,26 @@ class TestDotObserver < Test::Unit::TestCase
   end
   
   def testCorrectNumSubjects
-    actualSubjects = 3
+    expectedSubjects = 3
     #@dotMe.x = 0; @dotMe.y = 0
-    d = DotObserver.new( @dotList, @dotMe, 100, 100, actualSubjects )
-    expected = d.subjects.count
-    assert_equal( expected, actualSubjects, "Initializer should generate the specified number of subjects" )
+    d = DotObserver.new( @dotList, @dotMe, 100, 100, expectedSubjects )
+    actual = d.subjects.count
+    assert_equal( expectedSubjects, actual, "Initializer should generate the specified number of subjects" )
   end
+
+  def testNotIncludeSelfIfNotEnoughSubjects
+		# create a list that has some subject far past center that should be excluded    
+		myDotList = @dotList
+    myDotList << Dot.new( 21, 78, 88, @c1, 42 )
+    myDotList << Dot.new( 22, 90, 77, @c1, 42 )
+
+    requestedSubjects = myDotList.count - 1
+		expectedSubjects = myDotList.count - 3 # exclude myself and 2 out of range
+    d = DotObserver.new( myDotList, @dotMe, 100, 100, requestedSubjects )
+    actual = d.subjects.count
+    assert_equal( expectedSubjects, actual, "Initializer should only generate available number of subjects at max" )
+    assert_not_in_list( @myDot, d.subjects, "Should not include self in subjects list" )
+	end
 	
   def testObserveAverageLitStateIsOn
     dotList = [ @dot_lit.clone, @dot_lit.clone, @dotMe, @dot_dark.clone, @dot_lit.clone, @dot_dark.clone ]
@@ -123,6 +137,7 @@ class TestDotObserver < Test::Unit::TestCase
     assert_in_list( test1, result, "Expected item in closest 5 neighbors list" )
     assert_in_list( test2, result, "Expected item in closest 5 neighbors list" )
     assert_not_in_list( test3, result, "Expected item should not have made closest 5 neighbors list" )
+    assert_not_in_list( @myDot, result, "Should not include self in subjects list" )
   end
   
   private

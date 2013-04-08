@@ -87,7 +87,7 @@ class DotObserver
       # In theory, shouldn't need the expensive sqrt op if all I want is relative distance
       range = ( me.x - dot.x )**2 + ( me.y - dot.y )**2
       # to prevent observing self and to prevent throwing off coordinated indexes, set 'me' to furthest possible
-      range = 65535 if me == dot
+      range = 99999999 if me == dot
       candidates << dot
       distance << [ range, i ]
     end
