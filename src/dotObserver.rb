@@ -83,6 +83,8 @@ class DotObserver
     distance = Array.new
     candidates_list.each_with_index do |dot, i|
       #puts "dot=#{dot}, i=#{i}"
+      #range = Math.sqrt( ( me.x - dot.x )**2 + ( me.y - dot.y )**2 ).to_int
+      # In theory, shouldn't need the expensive sqrt op if all I want is relative distance
       range = Math.sqrt( ( me.x - dot.x )**2 + ( me.y - dot.y )**2 ).to_int
       # to prevent observing self and to prevent throwing off coordinated indexes, set 'me' to furthest possible
       range = 65535 if me == dot

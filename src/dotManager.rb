@@ -7,6 +7,7 @@ class DotManager
   FIXED_PULSE = 50
   
   attr_reader :dots
+  attr_reader :highlighted_dot
   
   # Generates the specified number of dots, each randomly placed within the specified coordinate range
   
@@ -19,6 +20,7 @@ class DotManager
     @rand = Random.new
     @dots = gen_dots( numDots, fixedPulse )
     gen_observers( numObservees, threshold )
+    @highlighted_dot = nil
   end
 
   def gen_dots( num, pulse, step=0 )
@@ -56,7 +58,20 @@ class DotManager
     # puts "genColor: #{color.to_s}"
     color    
   end
-  
+
+  ##
+  # Sets the first dot found within range of x, y as highlighted.
+  # If either coord is nil, sets hihglighted to nil.
+  def highlight_dot( x, y, range )
+    @highlighted_dot = nil if x.nil? or y.nil?
+    @dots.each do |dot|
+      if Gosu::distance( x, y, dot.x, dot.y ) <= range
+        @highlighted_dot = dot
+	break
+      end
+    end
+  end
+    
   def observers_state_lit?( dot ) 
     raise RuntimeError, "DotManager.observers_state_lit? called for dot with nil observer" if dot.observer.nil?
     dot.observer.is_observed_average_lit?
