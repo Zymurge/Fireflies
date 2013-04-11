@@ -161,3 +161,7 @@ pip-log.txt
 
 # Mac crap
 .DS_Store
+
+## Ruby Stuff
+.bundle/
+doc/
