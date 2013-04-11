@@ -10,7 +10,7 @@ group emerge into fully synchronized light cycles.
 The project is built in Ruby and uses the Gosu graphics library to simulate the 
 fireflies visualization.
 
-To invoke: 'ruby src/fireflies.rb'
+To invoke: './run' from the Fireflies directory
 
 Bonus features currently supported:
 
