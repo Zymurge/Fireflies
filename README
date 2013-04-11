@@ -7,4 +7,24 @@ to it's current state. If so, it will incrementally adjust it's own cycle (phase
 decay) to wait for the others. The goal is to find an algorithm that let's the 
 group emerge into fully synchronized light cycles.
 
-The project is built in Ruby and uses the Gosu graphics library to simulate the fireflies visualization.
+The project is built in Ruby and uses the Gosu graphics library to simulate the 
+fireflies visualization.
+
+To invoke: 'ruby src/fireflies.rb'
+
+Bonus features currently supported:
+
+- ESC: Exits program with extreme prejudice
+- SPACE: toggles in window basic stats
+- D: toggles debug logging and stats dump to stdout
+- M: toggles movement of the fireflies on/off
+- Left click on dot: highlights one firefly circled in red and circles observed 
+  subjects in blue
+(hint: use 'M' to freeze the little buggers making it easier to click one)
+
+Janky features:
+
+There are some (hopefully) intuitively named constants near the top of the Fireflies 
+class (src/fireflies.rb) that allow you to set things like window size, number of 
+fireflies, timing, number of subjects, etc. Someday these may find themselves 
+extracted into a slightly more elegant config model. 
