@@ -23,11 +23,7 @@ class SubjectFinder
     @candidates.each_with_index do |dot, i|
       #puts "dot=#{dot}, i=#{i}"
       # in theory, no need to do expensive sqrt since we're only looking at relative distances
-      #range = Math.sqrt( ( @me.x - dot.x )**2 + ( @me.y - dot.y )**2 ).to_int
       range = ( @me.x - dot.x )**2 + ( @me.y - dot.y )**2
-      # to prevent observing self and to prevent throwing off coordinated indexes, special set for 'me'
-      range = 65536 if @me == dot
-      #candidates << dot
       @distances << [ range, i ]
     end
     @distances.sort!
@@ -60,7 +56,7 @@ class SubjectFinder
     end  
     
     # if there aren't enough towards center than round out the group with the next nearest
-    # note: this create potential double mapping of near by and more central dots creating a weighted bias for those
+    # note: this create potential double mapping of nearby and more central dots creating a weighted bias for those
     #       I think that's a good thing
     if number < found then
       moreSubjects = build_nearest_list( number - found )
