@@ -3,12 +3,18 @@ class SubjectFinder
   attr_accessor :t
   
   def initialize( candidates, me, size_x, size_y )
-    @candidates = candidates
     @me = me
     # store the center coords
     @x = size_x / 2
     @y = size_y / 2
     
+    # strip myself out of the list
+    @candidates = Array.new
+    candidates.each do |dot|
+      @candidates << dot unless dot == @me
+    end    
+    
+    # call the first distance ranking before everyone starts moving
     rank_distances
   end
   
@@ -16,9 +22,11 @@ class SubjectFinder
     @distances = Array.new
     @candidates.each_with_index do |dot, i|
       #puts "dot=#{dot}, i=#{i}"
-      range = Math.sqrt( ( @me.x - dot.x )**2 + ( @me.y - dot.y )**2 ).to_int
-      # to prevent observing self and to prevent throwing off coordinated indexes, set 'me' to furthest possible
-      range = 65535 if @me == dot
+      # in theory, no need to do expensive sqrt since we're only looking at relative distances
+      #range = Math.sqrt( ( @me.x - dot.x )**2 + ( @me.y - dot.y )**2 ).to_int
+      range = ( @me.x - dot.x )**2 + ( @me.y - dot.y )**2
+      # to prevent observing self and to prevent throwing off coordinated indexes, special set for 'me'
+      range = 65536 if @me == dot
       #candidates << dot
       @distances << [ range, i ]
     end

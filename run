@@ -1,0 +1,6 @@
+#! /bin/bash
+
+# invoke me to start the Fireflies simulation
+
+MYDIR=$(dirname $BASH_SOURCE)
+ruby ${MYDIR}/src/fireflies.rb

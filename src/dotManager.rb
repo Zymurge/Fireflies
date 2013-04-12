@@ -61,15 +61,17 @@ class DotManager
 
   ##
   # Sets the first dot found within range of x, y as highlighted.
-  # If either coord is nil, sets hihglighted to nil.
+  # If either coord is nil, sets highlighted to nil.
+  # Returns the dot that was selected or nil if none found
   def highlight_dot( x, y, range )
     @highlighted_dot = nil if x.nil? or y.nil?
     @dots.each do |dot|
       if Gosu::distance( x, y, dot.x, dot.y ) <= range
         @highlighted_dot = dot
-	break
+	return @highlighted_dot
       end
     end
+    return nil
   end
     
   def observers_state_lit?( dot ) 

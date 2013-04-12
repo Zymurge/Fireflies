@@ -6,8 +6,10 @@ class DotObserver
   attr_reader :me, :subjects, :threshold
   
   def initialize( dotsList, me, x, y, numObservers=1, threshold=50 )
-    raise ArgumentError, "DotObserver requires a list" unless dotsList.class == Array
-    raise ArgumentError, "DotObserver requires less observers than are in the dotsList, exclusive of me" unless dotsList.count > numObservers
+    raise ArgumentError, "DotObserver requires a list" \
+	unless dotsList.class == Array
+    raise ArgumentError, "DotObserver requires less observers than are in the dotsList, exclusive of me" \
+	unless dotsList.count > numObservers
     validate_list_content( dotsList, Dot )
     @dots = dotsList
     @me = me
@@ -34,7 +36,7 @@ class DotObserver
   def subjects_to_s
     result = "AVG: #{is_observed_average_lit?} - "
     subjects.each do |s|
-      result += "id##{s.id}:#{s.is_lit?}; "
+      result += "id##{s.id} @ #{s.x},#{s.y}:#{s.is_lit?}; "
     end
     result
   end
@@ -58,10 +60,12 @@ class DotObserver
       total += 100 if dot.is_lit?
       # puts "observe: #{dot.is_lit?} / total: #{total}"
     end
-    percentLit = total / @subjects.length
-    
-    # potential fix to prevent near middle dot from chasing too few observers
-    percentLit = 0 if @subjects.length == 0
+    if @subjects.length > 0
+      percentLit = total / @subjects.length
+    else
+    	# potential fix to prevent near middle dot from chasing too few observers
+      percentLit = 0 if @subjects.length == 0
+    end
     
     percentLit
   end

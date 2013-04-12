@@ -135,6 +135,7 @@ class DisplayWindow < Gosu::Window
     dot.observer.subjects.each do |sub|
       @highlight_subject.draw( sub.x-8, sub.y-8, Z_HIGH )
     end
+    p "Me: #{dot.id} / Subjects: #{dot.observer.subjects_to_s}" if @debug_mode and dot.pulseStep == 0
   end
 
   def draw_stats
@@ -158,7 +159,10 @@ class DisplayWindow < Gosu::Window
 
   def process_mouse_click
     p "Mouse clicked @ #{self.mouse_x},#{self.mouse_y}" if @debug_mode
-    @dots.highlight_dot( mouse_x, mouse_y, CLICK_RANGE )
+    target = @dots.highlight_dot( mouse_x, mouse_y, CLICK_RANGE )
+    if target and @debug_mode
+       p "Dot id ##{target.id} @ #{target.x},#{target.y} selected"
+    end
   end
 
   def update_stats
